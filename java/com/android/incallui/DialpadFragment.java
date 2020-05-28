@@ -17,6 +17,7 @@
 package com.android.incallui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.util.ArrayMap;
@@ -170,7 +171,10 @@ public class DialpadFragment extends BaseFragment<DialpadPresenter, DialpadUi>
   }
 
   public void updateColors() {
-    int textColor = InCallPresenter.getInstance().getThemeColorManager().getPrimaryColor();
+    TypedArray a = getActivity().getTheme().obtainStyledAttributes(
+            new int[] { android.R.attr.colorAccent });
+    int textColor = a.getColor(0, currentTextColor);
+    a.recycle();
 
     if (currentTextColor == textColor) {
       return;
