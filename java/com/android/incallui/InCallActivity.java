@@ -887,6 +887,10 @@ public class InCallActivity extends TransactionSafeFragmentActivity
             ? ResourcesCompat.getColor(
                 getResources(), R.color.statusbar_background_color, getTheme())
             : InCallPresenter.getInstance().getThemeColorManager().getSecondaryColor();
+
+    // strip alpha :)
+    color =  (color & 0x00FFFFFF) | 0xFF000000;
+
     setTaskDescription(
         new TaskDescription(
             getResources().getString(R.string.notification_ongoing_call), null /* icon */, color));
